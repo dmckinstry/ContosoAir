@@ -22,7 +22,7 @@ steps:
     condition: in(variables['Agent.JobStatus'], 'Succeeded')
     inputs:
       codeCoverageTool: Cobertura
-      reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/*coverage.xml'
 
   - task: ArchiveFiles@2
     displayName: 'Archive sources'
