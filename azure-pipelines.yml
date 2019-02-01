@@ -8,7 +8,6 @@ steps:
 
   - script:
       npm test
-      ls $(System.DefaultWorkingDirectory)
     displayName: 'Run tests'
     continueOnError: true
 
