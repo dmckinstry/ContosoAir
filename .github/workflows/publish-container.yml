@@ -14,10 +14,12 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    - run |
-      docker build . -t dmckinstry/contosoair:latest -t:dmckinstry/contosoair:${{ github.sha }}
-      docker push dmckinstry/contosoair:latest
-      docker push dmckinstry/contosoair:${{ github.sha }}
+    - name: Build and publish Docker image
+      run: |
+        docker build . -t dmckinstry/contosoair:latest
+        #-t:dmckinstry/contosoair:${{ github.sha }}
+        docker push dmckinstry/contosoair:latest
+        docker push dmckinstry/contosoair:${{ github.sha }}
 
 #    - uses: azure/login@v1
 #      with:
