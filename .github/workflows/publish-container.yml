@@ -16,7 +16,8 @@ jobs:
 
     - name: Build and publish Docker image
       run: |
-        docker build . -t dmckinstry/contosoair:latest -t:dmckinstry/contosoair:${{ github.sha }}
+        docker build . -t:dmckinstry/contosoair:${{ github.sha }}
+        docker build . -t dmckinstry/contosoair:latest
         docker push dmckinstry/contosoair:latest
         docker push dmckinstry/contosoair:${{ github.sha }}
 
