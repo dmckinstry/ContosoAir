@@ -19,11 +19,11 @@ jobs:
       run: |
         npm install --production
         npm run build
-        npm run unit-test
+    #    npm run unit-test
 
-    #- uses: azure/login@v1
-    #  with:
-    #    creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v1
