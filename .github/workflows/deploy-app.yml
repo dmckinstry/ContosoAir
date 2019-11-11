@@ -14,23 +14,22 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.x' # Replace with specific Node version : 8.x, 10.x, 12.x
+
     - name: npm install, build, and test
       run: |
-        npm install
-        npm run build --if-present
-        npm run unit-test --if-present
+        npm install --production
+        npm run build
+        npm run unit-test
 
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    #- uses: azure/login@v1
+    #  with:
+    #    creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: davepfx1234-web-dev # Replace with your app name
-#        publish-profile: ${{ secrets.azureWebAppPublishProfile }} # Define secret variable in repository settings as per action documentation
-        #package: '.'  #default value is entire repo
-        # If your function app project is not located in your repository's root
-        # Please consider prefixing the project path in this package parameter
+        app-name: davepfx1234-web-dev
+
+
 
  
