@@ -3,8 +3,8 @@ on:
     branches:
       - master
     paths:
-      - 'deployment/*'
-      - '.github/workflows/configure-azure.yml'
+      - 'config/*'
+      - '.github/workflows/configure-environment.yml'
 
 name: provision-contoso-env
 jobs:
@@ -17,10 +17,10 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Create resource group
+    - name: Create resource group using AZ CLI
       run: |
         az group create --name 'mySampleRG' --location 'westus'
 
-    - name: Deploy ARM Template
+    - name: Deploy ARM Template using AZ CLI
       run: |
         az group deployment create --resource-group 'mySampleRG' --template-file deployment/azuredeploy.json --parameters @deployment/azuredeploy.parameters.json --parameters p_site_prefix=davepfx1234
