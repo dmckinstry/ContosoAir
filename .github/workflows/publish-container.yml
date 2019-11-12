@@ -1,12 +1,15 @@
-name: Publish container
-on: [pull_request]
-#on: [push, pull_request]
+name: Continuous Deployment (container)
+on:
+  push:
+    branches:
+      - master
+      - container
 
 jobs:
   build-container:
     runs-on: ubuntu-latest
-    steps:
 
+    steps:
     # checkout the repo
     - uses: actions/checkout@master
 
@@ -21,17 +24,18 @@ jobs:
         docker build . -t dmckinstry/contosoair:latest
         docker push dmckinstry/contosoair:latest
         docker push dmckinstry/contosoair:${{ github.sha }}
-
-#    - uses: azure/login@v1
-#      with:
-#        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-#    - name: 'Run Azure webapp deploy action using publish profile credentials'
-#      uses: azure/webapps-deploy@v1
-#      with: 
-#         app-name: davepfx1234-web-dev # Replace with your app name
-        #package: '.'  #default value is entire repo
-        # If your function app project is not located in your repository's root
-        # Please consider prefixing the project path in this package parameter
-
- 
+  
+  deploy-container:
+    needs: [build-container]
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+    - uses: azure/webapps-container-deploy@v1
+      with:
+        app-name: contosoair-container
+        images: 'dmckinstry/contosoair:${{ github.sha }}'
+        
