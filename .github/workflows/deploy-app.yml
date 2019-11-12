@@ -23,7 +23,7 @@ jobs:
       run: |
         npm install --production
         npm run build
-    #    npm run unit-test
+        npm run unit-test
 
     - uses: azure/login@v1
       with:
