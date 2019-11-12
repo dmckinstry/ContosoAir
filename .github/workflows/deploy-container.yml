@@ -6,7 +6,7 @@ on:
       - container
 
 jobs:
-  build-container:
+  publish-container:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,7 @@ jobs:
         docker push dmckinstry/contosoair:${{ github.sha }}
   
   deploy-container:
-    needs: [build-container]
+    needs: [publish-container]
     runs-on: ubuntu-latest
     
     steps:
