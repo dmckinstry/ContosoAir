@@ -21,9 +21,9 @@ jobs:
 
     - name: npm install, build, and test
       run: |
-        npm install --production
+        npm install
         npm run build
-        npm run unit-test --if-present
+        npm run unit-test
 
     - uses: azure/login@v1
       with:
