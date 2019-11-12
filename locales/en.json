@@ -1,7 +1,7 @@
 {
     "Title": "Contoso Air",
 	"Home": {
-		"HeroMessage": "Where do you<br>want to go?"
+		"HeroMessage": "Where do you<br>want to go today?"
 	},
 	"Deals": {
 		"CitiesTitle": "Recommended for you",
