@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - refine-app-deploy 
 
 jobs:
   build-and-deploy:
