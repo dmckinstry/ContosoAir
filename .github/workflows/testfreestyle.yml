@@ -1,0 +1,10 @@
+name: TestFreestyle
+on:
+  --- {}
+env:
+  --- {}
+jobs:
+  build:
+    steps:
+    - name: run command
+      run: echo Hello World
