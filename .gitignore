@@ -368,7 +368,7 @@ jspm_packages
 .node_repl_history
 
 # Project specifics
-.vscode/
+#.vscode/
 
 # Mac
 .DS_Store/
